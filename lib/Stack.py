@@ -8,10 +8,15 @@ class Stack:
         return len(self.items) == 0
 
     def push(self, item):
-        self.items.append(item)
+        if len(self.items) < self.limit:
+            self.items.append(item)
+        
 
     def pop(self):
-        self.items.pop() if len(self.items) > 0 else None
+        if len(self.items) > 0:
+            return self.items.pop()
+        # else:
+        #     raise Exception("Stack is empty")
 
     def peek(self):
         pass
@@ -20,7 +25,12 @@ class Stack:
         return len(self.items)
 
     def full(self):
-        pass
+        if len(self.items) >= self.limit:
+            return True
+        else:
+            return False
 
     def search(self, target):
-        pass
+        if target not in self.items:
+            return -1
+        return len(self.items) - self.items.index(target) -1
